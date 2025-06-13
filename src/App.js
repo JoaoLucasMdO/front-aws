@@ -32,7 +32,7 @@ function App() {
     <Container>
       <Row className="mt-3">
         <Col>
-          <h2>Usuários</h2>
+          <h2>Usuário</h2>
           <UserTable users={users} loading={loading} />
         </Col>
       </Row>
