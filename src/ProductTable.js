@@ -30,7 +30,6 @@ const ProductTable = () => {
           <tr className="bg-blue-600 text-white">
             <th className="py-3 px-4 text-left">ID</th>
             <th className="py-3 px-4 text-left">Nome</th>
-            <th className="py-3 px-4 text-left">Descrição</th>
             <th className="py-3 px-4 text-left">Em estoque</th>
             <th className="py-3 px-4 text-left">Preço</th>
           </tr>

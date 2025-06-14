@@ -3,7 +3,6 @@ import api from './services/api';
 
 const S3Uploader = () => {
   const [buckets, setBuckets] = useState([]);
-  const [selectedBucket, setSelectedBucket] = useState('');
   const [file, setFile] = useState(null);
   const [objects, setObjects] = useState([]);
   const [loadingBuckets, setLoadingBuckets] = useState(true);
@@ -61,38 +60,10 @@ const S3Uploader = () => {
     setLoadingObjects(false);
   };
 
-  const handleBucketChange = async (bucketName) => {
-    setSelectedBucket(bucketName);
-    if (bucketName) {
-      fetchObjects(bucketName);
-    } else {
-      setObjects([]);
-    }
-  };
-
   return (
     <div className="max-w-xl mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
       <h2 className="text-2xl font-bold mb-6 text-center text-blue-700">Upload para S3</h2>
-      <div className="mb-4">
-        <label className="block mb-2 font-semibold text-gray-700">Escolha um bucket:</label>
-        <select
-          className="w-full border rounded px-3 py-2"
-          value={selectedBucket}
-          onChange={(e) => handleBucketChange(e.target.value)}
-        >
-          <option value="">Selecione um bucket</option>
-          {loadingBuckets ? (
-            <option>Carregando buckets...</option>
-          ) : (
-            buckets.map((bucket) => (
-              <option key={bucket.Name} value={bucket.Name}>
-                {bucket.Name}
-              </option>
-            ))
-          )}
-        </select>
-      </div>
-
+        
       <div className="mb-4">
         <label className="block mb-2 font-semibold text-gray-700">Selecione um arquivo:</label>
         <input
