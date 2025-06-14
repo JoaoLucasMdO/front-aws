@@ -7,7 +7,7 @@ const Navbar = () => {
         <div className="flex justify-between">
           <div className="flex space-x-7">
             <div className="flex items-center py-4">
-              <span className="font-semibold text-white text-lg">My App</span>
+              <span className="font-semibold text-white text-lg">P2 AWS</span>
             </div>
             <div className="hidden md:flex items-center space-x-1">
               <Link
@@ -21,6 +21,9 @@ const Navbar = () => {
                 className="py-4 px-2 text-white hover:text-gray-200 transition duration-300"
               >
                 Usuários
+              </Link>
+              <Link to="/products" className="py-4 px-2 text-white hover:text-gray-200">
+                Produtos
               </Link>
             </div>
           </div>
