@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import api from './services/api';
+import api from '../../services/api';
 
-const ProductTable = () => {
-  const [products, setProducts] = useState([]);
+const UserTable = () => {
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get('produtos')
+    api.get('usuarios')
       .then(res => {
-        setProducts(res.data);
+        setUsers(res.data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -28,27 +28,20 @@ const ProductTable = () => {
       <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
         <thead>
           <tr className="bg-blue-600 text-white">
-            <th className="py-3 px-4 text-left">ID</th>
-            <th className="py-3 px-4 text-left">Nome</th>
-            <th className="py-3 px-4 text-left">Em estoque</th>
-            <th className="py-3 px-4 text-left">Preço</th>
+            <th className="py-3 px-4 text-left">ID:</th>
+            <th className="py-3 px-4 text-left">Nome:</th>
+            <th className="py-3 px-4 text-left">Email:</th>
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {users.map((user) => (
             <tr
-              key={product.id}
+              key={user._id}
               className="hover:bg-blue-50 transition-colors"
             >
-              <td className="py-2 px-4">{product.id}</td>
-              <td className="py-2 px-4">{product.nome}</td>
-              <td className="py-2 px-4">{product.estoque}</td>
-              <td className="py-2 px-4">
-                {Number(product.preco).toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                })}
-              </td>
+              <td className="py-2 px-4">{user._id}</td>
+              <td className="py-2 px-4">{user.nome}</td>
+              <td className="py-2 px-4">{user.email}</td>
             </tr>
           ))}
         </tbody>
@@ -57,4 +50,4 @@ const ProductTable = () => {
   );
 };
 
-export default ProductTable;
+export default UserTable;
