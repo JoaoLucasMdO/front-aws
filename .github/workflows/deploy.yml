@@ -260,5 +260,8 @@ jobs:
             echo "⬇️ Baixando nova imagem..."
             docker pull $IMAGE
 
+            echo "🧹 Removendo container local antiga, se existir..."
+            sudo docker rm -f front-aws || true
+            
             echo "🚀 Subindo novo container... $REPO_NAME $IMAGE"
             docker run -d -p 8080:80 --name $REPO_NAME $IMAGE
