@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Button, Table, Form, InputGroup } from 'react-bootstrap';
 import UserTable from './UserTable';
 import ProductTable from './ProductTable';
 import S3Uploader from './S3Uploader';

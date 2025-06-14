@@ -31,20 +31,22 @@ const ProductTable = () => {
             <th className="py-3 px-4 text-left">ID</th>
             <th className="py-3 px-4 text-left">Nome</th>
             <th className="py-3 px-4 text-left">Descrição</th>
+            <th className="py-3 px-4 text-left">Em estoque</th>
             <th className="py-3 px-4 text-left">Preço</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) => (
             <tr
-              key={product.Id}
+              key={product.id}
               className="hover:bg-blue-50 transition-colors"
             >
-              <td className="py-2 px-4">{product.Id}</td>
-              <td className="py-2 px-4">{product.Nome}</td>
-              <td className="py-2 px-4">{product.Descricao}</td>
+              <td className="py-2 px-4">{product.id}</td>
+              <td className="py-2 px-4">{product.nome}</td>
+              <td className="py-2 px-4">{product.descricao}</td>
+              <td className="py-2 px-4">{product.estoque}</td>
               <td className="py-2 px-4">
-                {Number(product.Preco).toLocaleString('pt-BR', {
+                {Number(product.preco).toLocaleString('pt-BR', {
                   style: 'currency',
                   currency: 'BRL',
                 })}
