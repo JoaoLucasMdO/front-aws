@@ -3,6 +3,7 @@ import api from './services/api';
 
 const S3Uploader = () => {
   const [buckets, setBuckets] = useState([]);
+  const [selectedBucket, setSelectedBucket] = useState('');
   const [file, setFile] = useState(null);
   const [objects, setObjects] = useState([]);
   const [loadingBuckets, setLoadingBuckets] = useState(true);
@@ -60,10 +61,38 @@ const S3Uploader = () => {
     setLoadingObjects(false);
   };
 
+  const handleBucketChange = async (bucketName) => {
+    setSelectedBucket(bucketName);
+    if (bucketName) {
+      fetchObjects(bucketName);
+    } else {
+      setObjects([]);
+    }
+  };
+
   return (
     <div className="max-w-xl mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
       <h2 className="text-2xl font-bold mb-6 text-center text-blue-700">Upload para S3</h2>
-        
+      <div className="mb-4">
+        <label className="block mb-2 font-semibold text-gray-700">Escolha um bucket:</label>
+        <select
+          className="w-full border rounded px-3 py-2"
+          value={selectedBucket}
+          onChange={(e) => handleBucketChange(e.target.value)}
+        >
+          <option value="">Selecione um bucket</option>
+          {loadingBuckets ? (
+            <option>Carregando buckets...</option>
+          ) : (
+            buckets.map((bucket) => (
+              <option key={bucket.Name} value={bucket.Name}>
+                {bucket.Name}
+              </option>
+            ))
+          )}
+        </select>
+      </div>
+
       <div className="mb-4">
         <label className="block mb-2 font-semibold text-gray-700">Selecione um arquivo:</label>
         <input
@@ -76,14 +105,14 @@ const S3Uploader = () => {
       <button
         className={`w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors font-semibold ${uploading ? 'opacity-60 cursor-not-allowed' : ''}`}
         onClick={handleUpload}
-        disabled={uploading || !file}
+        disabled={uploading || !file || !selectedBucket}
       >
         {uploading ? 'Enviando...' : 'Upload'}
       </button>
 
       {selectedBucket && (
         <div className="mt-8">
-          <h3 className="text-lg font-bold mb-2 text-blue-600">Objetos no Bucket</h3>
+          <h3 className="text-lg font-bold mb-2 text-blue-600">Objetos no Bucket <span className="font-mono">{selectedBucket}</span></h3>
           {loadingObjects ? (
             <div className="flex justify-center items-center h-16">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
