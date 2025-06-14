@@ -36,7 +36,7 @@ const S3Uploader = () => {
     formData.append('file', file);
 
     try {
-      await api.post(`buckets/${selectedBucket}/upload`, formData, {
+      await api.post(`buckets/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       alert('Arquivo enviado com sucesso!');

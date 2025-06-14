@@ -43,7 +43,6 @@ const ProductTable = () => {
             >
               <td className="py-2 px-4">{product.id}</td>
               <td className="py-2 px-4">{product.nome}</td>
-              <td className="py-2 px-4">{product.descricao}</td>
               <td className="py-2 px-4">{product.estoque}</td>
               <td className="py-2 px-4">
                 {Number(product.preco).toLocaleString('pt-BR', {
