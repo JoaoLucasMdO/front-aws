@@ -76,14 +76,14 @@ const S3Uploader = () => {
       <button
         className={`w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors font-semibold ${uploading ? 'opacity-60 cursor-not-allowed' : ''}`}
         onClick={handleUpload}
-        disabled={uploading || !file || !selectedBucket}
+        disabled={uploading || !file}
       >
         {uploading ? 'Enviando...' : 'Upload'}
       </button>
 
       {selectedBucket && (
         <div className="mt-8">
-          <h3 className="text-lg font-bold mb-2 text-blue-600">Objetos no Bucket <span className="font-mono">{selectedBucket}</span></h3>
+          <h3 className="text-lg font-bold mb-2 text-blue-600">Objetos no Bucket</h3>
           {loadingObjects ? (
             <div className="flex justify-center items-center h-16">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
