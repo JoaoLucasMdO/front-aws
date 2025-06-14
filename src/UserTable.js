@@ -28,9 +28,9 @@ const UserTable = () => {
       <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
         <thead>
           <tr className="bg-blue-600 text-white">
-            <th className="py-3 px-4 text-left">ID:</th>
-            <th className="py-3 px-4 text-left">Nome:</th>
-            <th className="py-3 px-4 text-left">Email:</th>
+            <th className="py-3 px-4 text-left">ID</th>
+            <th className="py-3 px-4 text-left">Nome</th>
+            <th className="py-3 px-4 text-left">Email</th>
           </tr>
         </thead>
         <tbody>
