@@ -3,8 +3,7 @@ import Home from "./pages/home";
 import UserPage from "./pages/userPage";
 import Navbar from './components/navbar';
 import ProductsPage from "./pages/productsPage";
-
-import BucketsPage from './pages/BucketsPage';
+import BucketsPage from './pages/bucketsPage';
 
 function App() {
   return (

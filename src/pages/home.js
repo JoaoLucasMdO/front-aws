@@ -1,17 +1,16 @@
-import UserTable from '../components/users/UserTable';
-import ProductTable from '../components/products/ProductTable';
-import S3Uploader from '../components/buckets/S3Uploader';
+import React from 'react';
 
-
-function Home() {
+const Home = () => {
   return (
-    <div className="max-w-5xl mx-auto p-4">
-      <section>
-        <h2 className="text-2xl font-bold mb-4 text-purple-700">Upload de Arquivo S3</h2>
-        <S3Uploader />
-      </section>
+    <div className="flex flex-col items-center justify-center min-h-[80vh]">
+      <h1 className="text-4xl font-bold text-blue-600 mb-4">
+        Bem-vindo!
+      </h1>
+      <p className="text-xl text-gray-600">
+        Sistema de Gerenciamento AWS
+      </p>
     </div>
   );
-}
+};
 
 export default Home;
