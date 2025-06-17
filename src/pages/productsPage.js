@@ -10,11 +10,12 @@ const ProductsPage = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await api.get('produtos');
+      const response = await api.get('/produtos');
       setProducts(response.data);
       setLoading(false);
     } catch (err) {
       setError('Erro ao carregar produtos');
+      console.error(err);
       setLoading(false);
     }
   };
@@ -27,25 +28,27 @@ const ProductsPage = () => {
     e.preventDefault();
     try {
       if (editingId) {
-        await api.put(`produtos/${editingId}`, formData);
+        await api.put(`/produtos/${editingId}`, formData);
       } else {
-        await api.post('produtos', formData);
+        await api.post('/produtos', formData);
       }
-      setFormData({ nome: '', preco: '', descricao: '' });
+      setFormData({ nome: '', preco: '', estoque: '' });
       setEditingId(null);
-      fetchProducts();
+      await fetchProducts();
     } catch (err) {
       setError(editingId ? 'Erro ao atualizar produto' : 'Erro ao criar produto');
+      console.error(err);
     }
   };
 
   const handleDelete = async (id) => {
     if (window.confirm('Tem certeza que deseja deletar este produto?')) {
       try {
-        await api.delete(`produtos/${id}`);
-        fetchProducts();
+        await api.delete(`/produtos/${id}`);
+        await fetchProducts();
       } catch (err) {
         setError('Erro ao deletar produto');
+        console.error(err);
       }
     }
   };
@@ -54,9 +57,14 @@ const ProductsPage = () => {
     setFormData({
       nome: product.nome,
       preco: product.preco,
-      descricao: product.descricao
+      estoque: product.estoque
     });
     setEditingId(product._id);
+  };
+
+  const handleCancel = () => {
+    setEditingId(null);
+    setFormData({ nome: '', preco: '', estoque: '' });
   };
 
   if (loading) {
@@ -75,8 +83,7 @@ const ProductsPage = () => {
         </div>
       )}
 
-      {/* Product Form */}
-    <form onSubmit={handleSubmit} className="mb-8 bg-white shadow-md rounded px-8 pt-6 pb-8">
+      <form onSubmit={handleSubmit} className="mb-8 bg-white shadow-md rounded px-8 pt-6 pb-8">
         <h2 className="text-2xl mb-4">{editingId ? 'Editar Produto' : 'Novo Produto'}</h2>
         
         <div className="mb-4">
@@ -133,10 +140,7 @@ const ProductsPage = () => {
             <button
               className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
               type="button"
-              onClick={() => {
-                setEditingId(null);
-                setFormData({ nome: '', preco: '', descricao: '' });
-              }}
+              onClick={handleCancel}
             >
               Cancelar
             </button>
@@ -144,7 +148,6 @@ const ProductsPage = () => {
         </div>
       </form>
 
-      {/* Products Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
           <thead>
