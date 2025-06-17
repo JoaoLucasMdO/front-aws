@@ -4,7 +4,7 @@ import api from '../services/api';
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [formData, setFormData] = useState({ nome: '', preco: '', descricao: '' });
+  const [formData, setFormData] = useState({ nome: '', preco: '', estoque: '' });
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState('');
 
@@ -76,7 +76,7 @@ const ProductsPage = () => {
       )}
 
       {/* Product Form */}
-      <form onSubmit={handleSubmit} className="mb-8 bg-white shadow-md rounded px-8 pt-6 pb-8">
+    <form onSubmit={handleSubmit} className="mb-8 bg-white shadow-md rounded px-8 pt-6 pb-8">
         <h2 className="text-2xl mb-4">{editingId ? 'Editar Produto' : 'Novo Produto'}</h2>
         
         <div className="mb-4">
@@ -109,15 +109,15 @@ const ProductsPage = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descricao">
-            Descrição
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="estoque">
+            Estoque
           </label>
-          <textarea
+          <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-            id="descricao"
-            value={formData.descricao}
-            onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
-            rows="3"
+            id="estoque"
+            type="number"
+            value={formData.estoque}
+            onChange={(e) => setFormData({ ...formData, estoque: e.target.value })}
             required
           />
         </div>
@@ -151,7 +151,7 @@ const ProductsPage = () => {
             <tr className="bg-blue-600 text-white">
               <th className="py-3 px-4 text-left">Nome</th>
               <th className="py-3 px-4 text-left">Preço</th>
-              <th className="py-3 px-4 text-left">Descrição</th>
+              <th className="py-3 px-4 text-left">Estoque</th>
               <th className="py-3 px-4 text-left">Ações</th>
             </tr>
           </thead>
@@ -160,7 +160,7 @@ const ProductsPage = () => {
               <tr key={product._id} className="hover:bg-blue-50 transition-colors">
                 <td className="py-2 px-4">{product.nome}</td>
                 <td className="py-2 px-4">R$ {Number(product.preco).toFixed(2)}</td>
-                <td className="py-2 px-4">{product.descricao}</td>
+                <td className="py-2 px-4">{product.estoque}</td>
                 <td className="py-2 px-4">
                   <button
                     onClick={() => handleEdit(product)}
