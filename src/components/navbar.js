@@ -25,6 +25,9 @@ const Navbar = () => {
               <Link to="/products" className="py-4 px-2 text-white hover:text-gray-200">
                 Produtos
               </Link>
+              <Link to="/buckets" className="py-4 px-2 text-white hover:text-gray-200">
+                Buckets
+              </Link>
             </div>
           </div>
         </div>

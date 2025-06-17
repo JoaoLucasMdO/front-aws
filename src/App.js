@@ -4,6 +4,8 @@ import UserPage from "./pages/userPage";
 import Navbar from './components/navbar';
 import ProductsPage from "./pages/productsPage";
 
+import BucketsPage from './pages/BucketsPage';
+
 function App() {
   return (
     <Router>
@@ -14,12 +16,12 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<UserPage />} />
             <Route path="/products" element={<ProductsPage />} />
+            <Route path="/buckets" element={<BucketsPage />} />
           </Routes>
         </div>
       </div>
     </Router>
   );
 }
-
 
 export default App;
