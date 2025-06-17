@@ -59,7 +59,7 @@ const ProductsPage = () => {
       preco: product.preco,
       estoque: product.estoque
     });
-    setEditingId(product._id);
+    setEditingId(product.id);
   };
 
   const handleCancel = () => {
@@ -160,7 +160,7 @@ const ProductsPage = () => {
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr key={product._id} className="hover:bg-blue-50 transition-colors">
+              <tr key={product.id} className="hover:bg-blue-50 transition-colors">
                 <td className="py-2 px-4">{product.nome}</td>
                 <td className="py-2 px-4">R$ {Number(product.preco).toFixed(2)}</td>
                 <td className="py-2 px-4">{product.estoque}</td>
@@ -172,7 +172,7 @@ const ProductsPage = () => {
                     Editar
                   </button>
                   <button
-                    onClick={() => handleDelete(product._id)}
+                    onClick={() => handleDelete(product.id)}
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
                   >
                     Deletar
